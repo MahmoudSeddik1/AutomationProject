@@ -3,7 +3,6 @@ package apiTests;
 import base.BaseAPIs;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.response.Response;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 public class APITests extends BaseAPIs {
@@ -23,7 +22,8 @@ public class APITests extends BaseAPIs {
 
         //Logging the body in the console
         response.then().log().body();
-
+        //Asserting that request is done successfully
+        response.then().statusCode(200);
         //Asserting that id and createdAt are not empty
         softly.assertNotNull(response.path("id"));
         softly.assertNotNull(response.path("createdAt"));
